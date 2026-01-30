@@ -10,8 +10,8 @@ async fn main(){
         .route("/login", post(login_handler))
         .route("/info",get(get_info_handler));
     
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
-    println!("Server is Listening....");
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000").await.unwrap();
+    println!("Server is Listening.... on {}", listener.local_addr().unwrap());
     
     axum::serve(listener,app).await.unwrap();
     
